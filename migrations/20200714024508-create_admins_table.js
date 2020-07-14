@@ -2,7 +2,13 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('porters', {
+    /**
+     * Add altering commands here.
+     *
+     * Example:
+     * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
+     */
+    await queryInterface.createTable('admins', {
       id: {
         type: Sequelize.UUID,
         defaultType: Sequelize.UUIDV4,
@@ -22,9 +28,6 @@ module.exports = {
         type: Sequelize.STRING(30),
         allowNull: false,
       },
-      gender: {
-        type: Sequelize.ENUM(`MALE`, `FEMALE`),
-      },
       passwordHash: {
         type: Sequelize.STRING(30),
         allowNull: false,
@@ -35,6 +38,13 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('porters')
+    /**
+     * Add reverting commands here.
+     *
+     * Example:
+     * await queryInterface.dropTable('users');
+     */
+
+    await queryInterface.dropTable('admins')
   },
 }
