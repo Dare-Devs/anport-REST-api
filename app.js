@@ -4,7 +4,6 @@ const app = express()
 
 app.use(cors())
 app.use(express.json())
-
 require('./database/db/connnection')
 
 module.exports = app

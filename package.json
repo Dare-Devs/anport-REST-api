@@ -24,6 +24,7 @@
     "cross-env": "^7.0.2",
     "express": "^4.17.1",
     "mysql2": "^2.1.0",
+    "pg": "^8.3.0",
     "sequelize": "^6.3.3"
   },
   "devDependencies": {
