@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "root",
-    "password": "dodo123=",
+    "username": "tekipeps",
+    "password": "tekipeps",
     "database": "anport",
-    "host": "127.0.0.1",
+    "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
