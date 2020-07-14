@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     read: {
       type: DataTypes.BOOLEAN(),
-      default: false,
+      defaultValue: false,
     },
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE,

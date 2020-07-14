@@ -1,4 +1,5 @@
-'use strict'
+const { v4: uuidv4 } = require('uuid')
+;('use strict')
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -11,7 +12,7 @@ module.exports = {
     await queryInterface.createTable('porters', {
       id: {
         type: Sequelize.UUID,
-        defaultType: Sequelize.UUIDV4,
+        defaultValue: uuidv4(),
         allowNull: false,
         primaryKey: true,
       },
@@ -32,7 +33,7 @@ module.exports = {
         type: Sequelize.ENUM(`MALE`, `FEMALE`),
       },
       passwordHash: {
-        type: Sequelize.STRING(30),
+        type: Sequelize.STRING(),
         allowNull: false,
       },
       createdAt: Sequelize.DATE,

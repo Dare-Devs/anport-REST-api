@@ -29,7 +29,7 @@ module.exports = {
       },
       read: {
         type: Sequelize.BOOLEAN(),
-        default: false,
+        defaultValue: false,
       },
       createdAt: Sequelize.DATE,
       updatedAt: Sequelize.DATE,

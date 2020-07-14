@@ -1,8 +1,9 @@
+const { v4: uuidv4 } = require('uuid')
 module.exports = (sequelize, DataTypes) => {
   const Admin = sequelize.define('Admin', {
     id: {
       type: DataTypes.UUID,
-      defaultType: DataTypes.UUIDV4,
+      defaultValue: uuidv4(),
       allowNull: false,
       primaryKey: true,
     },
@@ -20,11 +21,12 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
     passwordHash: {
-      type: DataTypes.STRING(30),
+      type: DataTypes.STRING(),
       allowNull: false,
     },
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE,
   })
+
   return Admin
 }
