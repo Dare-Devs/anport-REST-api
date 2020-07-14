@@ -1,4 +1,3 @@
-const { v4: uuidv4 } = require('uuid')
 ;('use strict')
 
 module.exports = {
@@ -12,7 +11,6 @@ module.exports = {
     await queryInterface.createTable('dsas', {
       id: {
         type: Sequelize.UUID,
-        defaultValue: uuidv4(),
         allowNull: false,
         primaryKey: true,
       },
