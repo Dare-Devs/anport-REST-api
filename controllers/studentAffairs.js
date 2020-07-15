@@ -25,9 +25,19 @@ dsaRouter.get('/:id', async (req, res, next) => {
 
 dsaRouter.post('/', async (req, res, next) => {
   try {
-    const dsa = Dsa.build(req.body)
-    const newPorter = await dsa.save()
-    res.json(newPorter)
+    const body = req.body
+    const passwordHash = await bcrypt.hash(body.password, 10)
+    const dsa = Dsa.build({
+      firstName: body.firstName,
+      lastName: body.lastName,
+      schoolId: body.schoolId,
+      email: body.email,
+      gender: body.gender,
+      passwordHash,
+    })
+
+    const newDsa = await dsa.save()
+    res.json(newDsa)
   } catch (error) {
     next(error)
   }
