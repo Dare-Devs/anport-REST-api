@@ -11,7 +11,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
      */
-    await queryInterface.bulkInsert('reports', [
+    await queryInterface.bulkInsert('Reports', [
       {
         porterId: 'AUL/PORTER/15/656565',
         title: 'REQUEST FOR PAINT FOR THE BOYS HOSTEL',
@@ -29,6 +29,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete('reports', null, {})
+    await queryInterface.bulkDelete('Reports', null, {})
   },
 }

@@ -12,7 +12,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
      */
-    await queryInterface.bulkInsert('dsas', [
+    await queryInterface.bulkInsert('Dsas', [
       {
         id: uuidv4(),
         schoolId: 'AUL/SCI/17/00999',
@@ -32,6 +32,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete('dsas', null, {})
+    await queryInterface.bulkDelete('Dsas', null, {})
   },
 }

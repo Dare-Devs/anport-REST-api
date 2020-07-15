@@ -12,7 +12,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
      */
-    await queryInterface.bulkInsert('porters', [
+    await queryInterface.bulkInsert('Porters', [
       {
         id: uuidv4(),
         schoolId: 'AUL/SCI/17/7878',
@@ -32,6 +32,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete('porters', null, {})
+    await queryInterface.bulkDelete('Porters', null, {})
   },
 }
