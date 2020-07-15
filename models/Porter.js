@@ -28,6 +28,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(),
       allowNull: false,
     },
+    email: {
+      type: DataTypes.STRING(50),
+      allowNull: false,
+      unique: true,
+    },
     createdAt: DataTypes.DATE(),
     updatedAt: DataTypes.DATE(),
   })

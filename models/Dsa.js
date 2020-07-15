@@ -24,6 +24,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.ENUM(`MALE`, `FEMALE`),
       allowNull: false,
     },
+    email: {
+      type: DataTypes.STRING(50),
+      allowNull: false,
+      unique: true,
+    },
     passwordHash: {
       type: DataTypes.STRING(),
       allowNull: false,
