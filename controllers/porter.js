@@ -14,7 +14,6 @@ porterRouter.get('/', async (req, res, next) => {
 porterRouter.get('/:id', async (req, res, next) => {
   try {
     const porter = await Porter.findByPk(req.params.id)
-    console.log(porter)
     if (porter) {
       return res.json(porter.dataValues)
     }
@@ -46,7 +45,8 @@ porterRouter.post('/', async (req, res, next) => {
 
 porterRouter.put('/:id', async (req, res, next) => {
   try {
-    const { schoolId, firstName, lastName, gender, passwordHash } = req.body
+    const { schoolId, firstName, lastName, gender, password } = req.body
+    const passwordHash = await bcrypt.hash(password, 10)
 
     const done = await Porter.update(
       { schoolId, firstName, lastName, gender, passwordHash },

@@ -1,5 +1,6 @@
 const dsaRouter = require('express').Router()
 const { Dsa } = require('../models')
+const bcrypt = require('bcrypt')
 
 dsaRouter.get('/', async (req, res, next) => {
   try {
@@ -13,7 +14,6 @@ dsaRouter.get('/', async (req, res, next) => {
 dsaRouter.get('/:id', async (req, res, next) => {
   try {
     const dsa = await Dsa.findByPk(req.params.id)
-    console.log(dsa)
     if (dsa) {
       return res.json(dsa.dataValues)
     }
@@ -45,7 +45,8 @@ dsaRouter.post('/', async (req, res, next) => {
 
 dsaRouter.put('/:id', async (req, res, next) => {
   try {
-    const { schoolId, firstName, lastName, gender, passwordHash } = req.body
+    const { schoolId, firstName, lastName, gender, password } = req.body
+    const passwordHash = await bcrypt.hash(password, 10)
 
     const done = await Dsa.update(
       { schoolId, firstName, lastName, gender, passwordHash },
@@ -70,7 +71,7 @@ dsaRouter.delete('/:id', async (req, res, next) => {
     if (done) {
       return res.status(204).end()
     }
-    res.status(400).json({ error: 'dsa with this id does not exist' })
+    res.status(400).json({ error: 'Dsa with this id does not exist' })
   } catch (error) {
     next(error)
   }
