@@ -1,5 +1,6 @@
 const porterRouter = require('express').Router()
 const { Porter } = require('../models')
+const bcrypt = require('bcrypt')
 
 porterRouter.get('/', async (req, res, next) => {
   try {
@@ -25,7 +26,17 @@ porterRouter.get('/:id', async (req, res, next) => {
 
 porterRouter.post('/', async (req, res, next) => {
   try {
-    const porter = Porter.build(req.body)
+    const body = req.body
+    const passwordHash = await bcrypt.hash(body.password, 10)
+    const porter = Porter.build({
+      firstName: body.firstName,
+      lastName: body.lastName,
+      schoolId: body.schoolId,
+      email: body.email,
+      gender: body.gender,
+      passwordHash,
+    })
+
     const newPorter = await porter.save()
     res.json(newPorter)
   } catch (error) {
