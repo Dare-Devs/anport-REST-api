@@ -1,9 +1,9 @@
-const { v4: uuidv4 } = require('uuid')
+const { Sequelize } = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
   const Admin = sequelize.define('Admin', {
     id: {
       type: DataTypes.UUID,
-      defaultValue: uuidv4(),
+      defaultValue: Sequelize.UUIDV4,
       allowNull: false,
       primaryKey: true,
     },

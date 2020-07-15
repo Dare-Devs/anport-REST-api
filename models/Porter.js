@@ -1,10 +1,9 @@
-const { v4: uuidv4 } = require('uuid')
-
+const { Sequelize } = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
   const Porter = sequelize.define('Porter', {
     id: {
       type: DataTypes.UUID,
-      defaultValue: uuidv4(),
+      defaultValue: Sequelize.UUIDV4,
       allowNull: false,
       primaryKey: true,
     },
@@ -23,13 +22,14 @@ module.exports = (sequelize, DataTypes) => {
     },
     gender: {
       type: DataTypes.ENUM(`MALE`, `FEMALE`),
+      allowNull: false,
     },
     passwordHash: {
       type: DataTypes.STRING(),
       allowNull: false,
     },
-    createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE,
+    createdAt: DataTypes.DATE(),
+    updatedAt: DataTypes.DATE(),
   })
   return Porter
 }
