@@ -73,7 +73,9 @@ dsaRouter.put('/:id', async (req, res, next) => {
       const dsa = await Dsa.findByPk(req.params.id)
       return res.json(dsa.dataValues)
     }
-    res.status(400).json({ error: 'cannot complete update' })
+    res.status(400).json({
+      error: 'cannot complete update, Enter at least one value to change',
+    })
   } catch (error) {
     next(error)
   }

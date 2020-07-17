@@ -55,6 +55,7 @@ porterRouter.put('/:id', async (req, res, next) => {
       acc[curr.key] = curr.value
       return acc
     }, {})
+
     const passwordChanged = async () => {
       if (body.password) {
         const passwordHash = await bcrypt.hash(body.password, 10)
@@ -73,7 +74,11 @@ porterRouter.put('/:id', async (req, res, next) => {
       const porter = await Porter.findByPk(req.params.id)
       return res.json(porter.dataValues)
     }
-    res.status(400).json({ error: 'cannot complete update' })
+    res
+      .status(400)
+      .json({
+        error: 'cannot complete update, Enter at least one value to change',
+      })
   } catch (error) {
     next(error)
   }
