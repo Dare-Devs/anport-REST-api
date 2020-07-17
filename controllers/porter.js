@@ -45,15 +45,29 @@ porterRouter.post('/', async (req, res, next) => {
 
 porterRouter.put('/:id', async (req, res, next) => {
   try {
-    const { schoolId, firstName, lastName, gender, password } = req.body
-    const passwordHash = await bcrypt.hash(password, 10)
-
-    const done = await Porter.update(
-      { schoolId, firstName, lastName, gender, passwordHash },
-      {
-        where: { id: req.params.id },
+    let validData = []
+    for (const [key, value] of Object.entries(req.body)) {
+      if (value !== null && value !== '') {
+        validData.push({ key, value })
       }
-    )
+    }
+    const body = validData.reduce((acc, curr) => {
+      acc[curr.key] = curr.value
+      return acc
+    }, {})
+    const passwordChanged = async () => {
+      if (body.password) {
+        const passwordHash = await bcrypt.hash(body.password, 10)
+        delete body.password
+        return { ...body, passwordHash }
+      }
+      return body
+    }
+    const newBody = await passwordChanged()
+
+    const done = await Porter.update(newBody, {
+      where: { id: req.params.id },
+    })
 
     if (done[0]) {
       const porter = await Porter.findByPk(req.params.id)
