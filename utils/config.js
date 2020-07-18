@@ -1,17 +1,6 @@
-const dbconfig = require('../config/config.json')
-
 if (process.env.NODE_ENV !== 'production') require('dotenv').config()
 
-let dbValues
-
-if (process.env.NODE_ENV === 'production') {
-  dbValues = dbconfig.production
-} else if (process.env.NODE_ENV === 'test') {
-  dbValues = dbconfig.test
-} else {
-  dbValues = dbconfig.development
-}
-
 let PORT = process.env.PORT
+let JWT_SECRET = process.env.JWT_SECRET
 
-module.exports = { PORT, dbValues }
+module.exports = { PORT, JWT_SECRET }
