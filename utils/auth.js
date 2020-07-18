@@ -6,15 +6,15 @@ const authenticate = (payload) => {
   return JWT.sign(payload, config.JWT_SECRET)
 }
 
-const authAdmin = async (req, res, next) => {
-  try {
-    const token = JWT.verify(req.token)
-    const admin = await Admin.findByPk(token.id)
-    console.log(admin)
-  } catch (error) {
-    next(error)
-  }
-}
+// const authAdmin = async (req, res, next) => {
+//   try {
+//     const token = JWT.verify(req.token)
+//     const admin = await Admin.findByPk(token.id)
+//     console.log(admin)
+//   } catch (error) {
+//     next(error)
+//   }
+// }
 
 const authDsa = async (req, res, next) => {
   try {
